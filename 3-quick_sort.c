@@ -56,21 +56,21 @@ int part(int *array, int low, int high, int size)
 
 	while (1)
 	{
-		while (array[i] <= array[pivot] && i != pivot)
+		while (array[i] < array[pivot] && i != pivot)
 			i = i + 1;
 		if (pivot == i)
 			break;
-		else if (array[pivot] < array[i])
+		else if (array[pivot] <= array[i])
 		{
 			swap(array, pivot, i);
 			print_array(array, size);
 			pivot = i;
 		}
-		while (array[j] >= array[pivot] && j != pivot)
+		while (array[j] > array[pivot] && j != pivot)
 			j = j - 1;
 		if (pivot == j)
 			break;
-		else if (array[pivot] > array[j])
+		else if (array[pivot] >= array[j])
 		{
 			swap(array, pivot, j);
 			print_array(array, size);
