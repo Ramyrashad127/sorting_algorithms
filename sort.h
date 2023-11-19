@@ -1,5 +1,8 @@
 #ifndef sort_file
 #define sort_file
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
 /**
  * struct listint_s - Doubly linked list node
  *
