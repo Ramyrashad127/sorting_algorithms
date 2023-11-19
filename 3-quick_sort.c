@@ -18,15 +18,15 @@ void quick_sort(int *array, size_t size)
  * @high: high
  * @size: size
  */
-void quick(int *array, size_t low, size_t high, size_t size)
+void quick(int *array, int low, int high, int size)
 {
-	int pivot;
+	int pivot = high;
 
 	if (low < high)
 	{
-		pivot = part(array, low, high, size_t size);
-		quick(array, low, pivot - 1);
-		quick(array, pivot + 1, high);
+		pivot = part(array, low, high, size);
+		quick(array, low, pivot - 1, size);
+		quick(array, pivot + 1, high, size);
 	}
 }
 /**
@@ -35,7 +35,7 @@ void quick(int *array, size_t low, size_t high, size_t size)
  * @i: index
  * @j: index
  */
-void swap(int *array, size_t i, size_t j)
+void swap(int *array, int i, int j)
 {
 	int k = array[i];
 
@@ -50,26 +50,32 @@ void swap(int *array, size_t i, size_t j)
  * @size: size
  * Return: index
  */
-size_t part(int *array, size_t low, size_t high, size_t size)
+int part(int *array, int low, int high, int size)
 {
-	size_t i = low, j = high, pivot = high;
+	int i = low, j = high, pivot = high;
 
-	while (1)
+	while (i < j)
 	{
 		while (array[i] <= array[pivot] && i != pivot)
-			i++;
+			i = i + 1;
 		if (pivot == i)
 			break;
-		swap(array, pivot, i);
-		print_array(array, size);
-		pivot = i;
+		else if (array[pivot] < array[i])
+		{
+			swap(array, pivot, i);
+			print_array(array, size);
+			pivot = i;
+		}
 		while (array[j] >= array[pivot] && j != pivot)
-			j--;
+			j = j - 1;
 		if (pivot == j)
 			break;
-		swap(array, pivot, j);
-		print_array(array, size);
-		pivot = j;
+		else if (array[pivot] > array[j])
+		{
+			swap(array, pivot, j);
+			print_array(array, size);
+			pivot = j;
+		}
 	}
 	return (pivot);
 }
