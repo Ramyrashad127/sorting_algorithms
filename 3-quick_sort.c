@@ -6,7 +6,7 @@
  */
 void quick_sort(int *array, size_t size)
 {
-	if (!array)
+	if (!array || !sized)
 		return;
 	quick(array, 0, size - 1, size);
 }
