@@ -54,7 +54,7 @@ int part(int *array, int low, int high, int size)
 {
 	int i = low, j = high, pivot = high;
 
-	while (i < j)
+	while (1)
 	{
 		while (array[i] <= array[pivot] && i != pivot)
 			i = i + 1;
