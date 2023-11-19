@@ -16,6 +16,10 @@ typedef struct listint_s
 	struct listint_s *prev;
 	struct listint_s *next;
 } listint_t;
+size_t part(int *array, size_t low, size_t high);
+void swap(int *array, size_t i, size_t j);
+void quick(int *array, size_t low, size_t high);
+void quick_sort(int *array, size_t size);
 void print_list(const listint_t *list);
 void print_array(const int *array, size_t size);
 void bubble_sort(int *array, size_t size);
