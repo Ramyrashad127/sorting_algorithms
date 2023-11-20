@@ -57,11 +57,19 @@ void merge(int *arr, int *container, int left, int mid, int right)
 		container[j + left_size] = arr[mid + 1 + j], j++;
 	printf("[left]: ");
 	for (i = 0; i < left_size; i++)
-		printf("%d ", container[i]);
+	{
+		printf("%d", container[i]);
+		if (i != left_size - 1)
+			printf(", ");
+	}
 	printf("\n");
 	printf("[right]: ");
 	for (j = left_size; j < left_size + right_size; j++)
-		printf("%d ", container[j]);
+	{
+		printf("%d", container[j]);
+		if (j != left_size + right_size - 1)
+			printf(", ");
+	}
 	printf("\n");
 	i = 0, j = left_size;
 	while (i < left_size && j < left_size + right_size)
@@ -78,6 +86,10 @@ void merge(int *arr, int *container, int left, int mid, int right)
 		arr[k] = container[j], j++, k++;
 	printf("[Done]: ");
 	for (i = left; i <= right; i++)
-		printf("%d ", arr[i]);
+	{
+		printf("%d", arr[i]);
+		if (i != right)
+			printf(", ");
+	}
 	printf("\n");
 }
