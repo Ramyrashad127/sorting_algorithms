@@ -6,11 +6,12 @@
  */
 void merge_sort(int *array, size_t size)
 {
-	int container[100];
+	int *container = malloc(sizeof(int) * size);
 
 	if (!array || !size)
 		return;
 	merge_recursive(array, container, 0, size - 1);
+	free(container);
 
 }
 /**
@@ -26,10 +27,10 @@ void merge_recursive(int *arr, int *container, int left, int right)
 
 	if (left < right)
 	{
-		if (left + right % 2 != 0)
-			mid = (left + right) / 2;
+		if ((left + right) % 2 != 0)
+			mid = ((left + right) / 2);
 		else
-			mid = ((left + right) / 2) - 1;
+			mid = (left + right) / 2 - 1;
 		merge_recursive(arr, container, left, mid);
 		merge_recursive(arr, container, mid + 1, right);
 		merge(arr, container, left, mid, right);
