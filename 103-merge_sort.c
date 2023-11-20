@@ -34,6 +34,7 @@ void merge_recursive(int *arr, int *container, int left, int right)
 		merge_recursive(arr, container, left, mid);
 		merge_recursive(arr, container, mid + 1, right);
 		merge(arr, container, left, mid, right);
+		printf("\n");
 	}
 }
 /**
@@ -46,43 +47,38 @@ void merge_recursive(int *arr, int *container, int left, int right)
  */
 void merge(int *arr, int *container, int left, int mid, int right)
 {
-	int i = 0, j = 0, k = left;
-	int left_size = mid - left + 1;
-	int right_size = right - mid;
+	int i = 0, j = 0, k = left, l_size = mid - left + 1, right_size = right - mid;
 
 	printf("Merging...\n");
-	while (i < left_size)
+	while (i < l_size)
 		container[i] = arr[left + i], i++;
 	while (j < right_size)
-		container[j + left_size] = arr[mid + 1 + j], j++;
+		container[j + l_size] = arr[mid + 1 + j], j++;
 	printf("[left]: ");
-	for (i = 0; i < left_size; i++)
+	for (i = 0; i < l_size; i++)
 	{
 		printf("%d", container[i]);
-		if (i != left_size - 1)
+		if (i != l_size - 1)
 			printf(", ");
 	}
-	printf("\n");
-	printf("[right]: ");
-	for (j = left_size; j < left_size + right_size; j++)
+	printf("\n"), printf("[right]: ");
+	for (j = l_size; j < l_size + right_size; j++)
 	{
 		printf("%d", container[j]);
-		if (j != left_size + right_size - 1)
+		if (j != l_size + right_size - 1)
 			printf(", ");
 	}
-	printf("\n");
-	i = 0, j = left_size;
-	while (i < left_size && j < left_size + right_size)
+	printf("\n"), i = 0, j = l_size;
+	while (i < l_size && j < l_size + right_size)
 	{
 		if (container[i] <= container[j])
-			arr[k] = container[i], i++;
+			arr[k] = container[i], i++, k++;
 		else
-			arr[k] = container[j], j++;
-		k++;
+			arr[k] = container[j], j++, k++;
 	}
-	while (i < left_size)
+	while (i < l_size)
 		arr[k] = container[i], i++, k++;
-	while (j < left_size + right_size)
+	while (j < l_size + right_size)
 		arr[k] = container[j], j++, k++;
 	printf("[Done]: ");
 	for (i = left; i <= right; i++)
@@ -91,5 +87,4 @@ void merge(int *arr, int *container, int left, int mid, int right)
 		if (i != right)
 			printf(", ");
 	}
-	printf("\n");
 }
